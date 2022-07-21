@@ -1,0 +1,14 @@
+id,Almacenamiento,precio,calida,aptitud,tipo,compatible
+1,"Disco Duro Seagate Barracuda 1TB SATA 3.5"", HDD, ST1000DM010",999,11,"90,8",HDD,todos
+2,"Disco Duro Seagate Barracuda 4TB SATA 3.5"", HDD, ST4000DM004",2499,10,"249,9",HDD,todos
+3,"Disco Duro Seagate Barracuda 6TB SATA 3.5"", HDD - ST6000DM003",3699,9,"411,0",HDD,todos
+4,"Disco Duro Seagate Barracuda 8TB SATA 3.5"", HDD - ST8000DM004",4499,8,"562,4",HDD,todos
+5,"Disco Duro Western Digital Ultra Star DC HC530 14TB SATA 3.5"", HDD",5999,7,"857,0",HDD,todos
+6,"Unidad de Estado Solido SSD Gigabyte 240GB, 500/420, SATA III",699,6,"116,5",SSD,todos
+7,"Unidad de Estado Solido SSD Kingston 480GB, SA400S37/480G,",999,5,"199,8",SSD,todos
+8,Unidad de Estado Solido SSD NVMe M.2 NV1 Kingston 500GB,1099,4,"274,8",SSD,todos
+9,"Unidad de Estado Solido SSD NVMe M.2 Samsung 980 Pro, 500GB",2499,4,"624,8",SSD,todos
+10,"Unidad de Estado Solido SSD NVMe M.2 NV1 Kingston 1TB, 2100/1700",1799,3,"599,7",SSD,todos
+11,"Unidad de Estado Solido SSD NVMe M.2 Teamgroup Cardea IOPS 1TB,",3499,3,"1166,3",SSD,todos
+12,"Unidad de Estado Solido SSD NVMe M.2 NV1 Kingston 2TB, 2100/1700",3649,2,"1824,5",SSD,todos
+13,"Unidad de Estado Solido SSD NVMe M.2 Corsair MP600, 2TB,",8999,1,"8999,0",SSD,todos
