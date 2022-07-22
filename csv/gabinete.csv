@@ -1,15 +1,15 @@
-id,gabinete,precio,calidad,aptitud,compatible
-1,"Gabinete MSI MAG Vampiric 010, Cristal Templado, 1 Ventiladores",899,13,"69,2",todos
-2,"Gabinete Aerocool Prime ARGB, Cristal Templado, 1 Ventilador ARGB",999,12,"83,3",todos
-3,"Gabinete Munfrost Shine RGB, ATX, Cristal Templado, 1 Ventilador",1099,11,"99,9",todos
-4,"Gabinete MSI MPG Gungnir 110M, Cristal Templado, 3 Ventiladores",1299,10,"129,9",todos
-5,"Gabinete Corsair Carbide Series Spec-04 Negro/Rojo, Cristal",1349,9,"149,9",todos
-6,"Gabinete Munfrost Panda Negro RGB, ATX, Cristal Templado, 1",1799,8,"224,9",todos
-7,"Gabinete Cougar MX410-G RGB, ATX, Cristal Templado, 4",1799,8,"224,9",todos
-8,"Gabinete Munfrost Panda Pro White, E-ATX, Cristal Templado, 2",2399,7,"342,7",todos
-9,"Gabinete Asus TUF Gaming GT301, Cristal Templado, 3 Ventiladores",2999,6,"499,8",todos
-10,"Gabinete Corsair Carbide Spec Omega RGB, Negro, ATX, Panel de",3499,5,"699,8",todos
-11,"Gabinete In Win 315 Mid Tower Negro, ATX, Cristal Templado",4199,4,"1049,8",todos
-12,"Gabinete In Win 309 Gaming Edition, Panel Frontal LED ARGB, Cristal",5999,3,"1999,7",todos
-13,"Gabinete Cougar Conquer, Open Frame, Cristal Templado, ATX",6499,2,"3249,5",todos
-14,"Gabinete Asus ROG Strix GX601 Helios White Edition, E-ATX, Cristal",8199,1,"8199,0",todos
+id,nombre,precio,calidad,aptitud,compatible
+1,"Gabinete MSI MAG Vampiric 010, Cristal Templado, 1 Ventiladores",899,13,69.2,todos
+2,"Gabinete Aerocool Prime ARGB, Cristal Templado, 1 Ventilador ARGB",999,12,83.3,todos
+3,"Gabinete Munfrost Shine RGB, ATX, Cristal Templado, 1 Ventilador",1099,11,99.9,todos
+4,"Gabinete MSI MPG Gungnir 110M, Cristal Templado, 3 Ventiladores",1299,10,129.9,todos
+5,"Gabinete Corsair Carbide Series Spec-04 Negro/Rojo, Cristal",1349,9,149.9,todos
+6,"Gabinete Munfrost Panda Negro RGB, ATX, Cristal Templado, 1",1799,8,224.9,todos
+7,"Gabinete Cougar MX410-G RGB, ATX, Cristal Templado, 4",1799,8,224.9,todos
+8,"Gabinete Munfrost Panda Pro White, E-ATX, Cristal Templado, 2",2399,7,342.7,todos
+9,"Gabinete Asus TUF Gaming GT301, Cristal Templado, 3 Ventiladores",2999,6,499.8,todos
+10,"Gabinete Corsair Carbide Spec Omega RGB, Negro, ATX, Panel de",3499,5,699.8,todos
+11,"Gabinete In Win 315 Mid Tower Negro, ATX, Cristal Templado",4199,4,1049.8,todos
+12,"Gabinete In Win 309 Gaming Edition, Panel Frontal LED ARGB, Cristal",5999,3,1999.7,todos
+13,"Gabinete Cougar Conquer, Open Frame, Cristal Templado, ATX",6499,2,3249.5,todos
+14,"Gabinete Asus ROG Strix GX601 Helios White Edition, E-ATX, Cristal",8199,1,8199.0,todos

@@ -1,9 +1,9 @@
 from math import comb
 import random
-from individuos import crearIndividuos
+from individuos import crearIndividuos, desagruparDatos
 
 from logicaComponentes import verificarCompatibilidad
-from logicaGenetico import combinacion, cruzarLista, seleccion, verificarDecendencia
+from logicaGenetico import combinacion, cruzarLista, mutarIndividuos, seleccion, verificarDecendencia
 
 PROCESADORES = 0
 TARJETAS = 0
@@ -71,12 +71,25 @@ def normalizarDatos(pI, datosComponenetes):
     
     lista_cruzado = cruzarLista(cruzar_list[0])
 
-    cruzaCompleta = cruzar_list[1] + lista_cruzado
+    print("\nCruzados lista")
+    for cruzadoIndi in lista_cruzado:
+        print(cruzadoIndi)
+    #cruzaCompleta = cruzar_list[1] + lista_cruzado
 
-    print("Lista cruzada: ")
+    lista_cruzado_individual = desagruparDatos( lista_cruzado )
+    lista_cruzado_individual_mutado = mutarIndividuos(lista_cruzado_individual, 40, 10, datosComponenetes)
+
+    noCruzar_list_individual = desagruparDatos( cruzar_list[1] )
+
+    cruzaCompleta = noCruzar_list_individual + lista_cruzado_individual_mutado
+
+    print("\nLista cruzada individual completa: ")
     for indiCruzados in cruzaCompleta:
         print(indiCruzados)
 
+    """ print("\nMutar individuos .... (proceso)")
+    mutarIndividuos(cruzaCompleta, 50, 45) """
+    
 
 
 

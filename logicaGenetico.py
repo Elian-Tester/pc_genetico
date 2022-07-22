@@ -67,6 +67,7 @@ def cruzarLista(cruza_list):
 
         nuevoIndividuo_1 = cruza_A1 + cruza_B2
         nuevoIndividuo_2 = cruza_B1 + cruza_A2
+        
 
         print("Corte: ", corte)
         print("cz_1: ", nuevoIndividuo_1)
@@ -76,6 +77,68 @@ def cruzarLista(cruza_list):
         cruza_list[indice]['id2'] = nuevoIndividuo_2
 
         cruzados.append(cruza_list[indice])
-    
+
     return cruzados
 
+
+def mutarIndividuos(individuos_mutar, mutGen, mutIndividuo, datosComponenetes):
+    print("\nIniciando mutacion:\n")
+
+    mutIndividuo = mutIndividuo/100        
+
+    mutados_list = []
+    for individuo in individuos_mutar:        
+        probabilidadMutacionIndi = (random.randint(1, 100)) / 100
+        print("mutara ?? ", probabilidadMutacionIndi, " < ", mutIndividuo)
+
+        if (probabilidadMutacionIndi < mutIndividuo ):            
+            individuo_mutado = mutarGenes(individuo, mutGen, datosComponenetes)
+            mutados_list.append(individuo_mutado)
+        else:
+            mutados_list.append(individuo)
+
+    return mutados_list
+
+def mutarGenes(individuo, mutGen, datosComponenetes):    
+    
+    cpu = datosComponenetes[0]
+    tarj = datosComponenetes[1]        
+    disi = datosComponenetes[2]    
+    ram = datosComponenetes[3]    
+    graf = datosComponenetes[4]    
+    almac = datosComponenetes[5]    
+    gabi = datosComponenetes[6]    
+    fuentePoder = datosComponenetes[7]
+
+    print("\ngenes  { --------------------------  }")
+    mutGen = mutGen / 100
+    print("mut gen: ",mutGen,"%")
+    print(individuo, "\n")
+    for idArticulo in range( len(individuo) ):
+        #print("id: ", individuo[idArticulo] )
+        lenArti = len(datosComponenetes[idArticulo])
+        #print("cant:", lenArti )        
+
+        if idArticulo!=0 and idArticulo!=1 and idArticulo!=3:
+
+            mutGenProb = ( random.randint(1, 100) ) / 100
+            if mutGenProb <= mutGen:
+                encontrado = True
+                while encontrado:
+                    idArti = random.randint(1, lenArti)
+                    
+                    if( idArti != individuo[idArticulo] ):
+                        individuo[idArticulo] = idArti
+                        encontrado = False
+    
+    print("\n---------------- >>> Individuo mutado: --------------------->>")
+    print(individuo)
+    print("{ --------------------------  }\n")
+
+    return individuo
+
+
+
+
+
+    

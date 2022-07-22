@@ -1,16 +1,16 @@
-id,Procesador,modelo,tipo,precio,calidad,compatible,aptitud
-1,"Intel Core i3 10100F, 4 Cores, 8 Threads, 6MB",core i3,1,"1999,00","4,30",11,"464,88"
-2,"Intel Core i3 10105, 4 Cores, 8 Threads, 6MB,",core i3,1,"2799,00","4,20",11,"666,43"
-3,"Intel Core i3 10100, 4 Cores, 8 Threads, 6MB,",core i3,1,"2999,00","4,10",11,"731,46"
-4,"Procesador Intel Core i3 12100F, 4 Cores (4 Performance-cores / 0",core i3,1,"2999,00","4,00",12,"749,75"
-5,"Intel Core i5 10400F, 6 Cores, 12 Threads, 12MB",core i5,2,"3299,00","3,50",11,"942,57"
-6,"Intel Core i5 10400, 6 Cores, 12 Threads, 12MB,",core i5,2,"3999,00","3,40",11,"1.176,18"
-7,"Intel Core i5 11400, 6 Cores, 12 Threads, 12MB,",core i5,2,"4799,00","3,30",11,"1.454,24"
-8,"Intel Core i5 11600KF, 6 Cores, 12 Threads, 12MB,",core i5,2,"6399,00","3,20",11,"1.999,69"
-9,"Intel Core i5 12600K, 10 Cores (6 Performance-cores / 4",core i5,2,"7199,00","3,10",12,"2.322,26"
-10,"Intel Core i7 10700, 8 Cores, 16 Threads, 16MB",core i7,3,"6999,00","2,30",11,"3.043,04"
-11,"Intel Core i7 11700K, 8 Cores, 16 Threads, 16MB",core i7,3,"7499,00","2,20",11,"3.408,64"
-12,"Intel Core i7 12700KF, 12 Cores (8 Performance-cores / 4",core i7,3,"9699,00","2,10",12,"4.618,57"
-13,"Intel Core i9 11900KF, 8 Cores, 16 Threads, 16MB,",core i9,4,"8599,00","1,30",11,"6.614,62"
-14,"Procesador Intel Core i9 11900K, 8 Cores, 16 Threads, 16MB,",core i9,4,"8599,00","1,20",11,"7.165,83"
-15,"Intel Core i9 12900K, 16 Cores (8 Performance-cores / 8",core i9,4,"14699,00","1,10",12,"13.362,73"
+id,nombre,modelo,tipo,precio,calidad,compatible,aptitud
+1,"Intel Core i3 10100F, 4 Cores, 8 Threads, 6MB",core i3,1,1999,4.3,11,464.9
+2,"Intel Core i3 10105, 4 Cores, 8 Threads, 6MB,",core i3,1,2799,4.2,11,666.4
+3,"Intel Core i3 10100, 4 Cores, 8 Threads, 6MB,",core i3,1,2999,4.1,11,731.5
+4,"Procesador Intel Core i3 12100F, 4 Cores (4 Performance-cores / 0",core i3,1,2999,4,12,749.8
+5,"Intel Core i5 10400F, 6 Cores, 12 Threads, 12MB",core i5,2,3299,3.5,11,942.6
+6,"Intel Core i5 10400, 6 Cores, 12 Threads, 12MB,",core i5,2,3999,3.4,11,1176.2
+7,"Intel Core i5 11400, 6 Cores, 12 Threads, 12MB,",core i5,2,4799,3.3,11,1454.2
+8,"Intel Core i5 11600KF, 6 Cores, 12 Threads, 12MB,",core i5,2,6399,3.2,11,1999.7
+9,"Intel Core i5 12600K, 10 Cores (6 Performance-cores / 4",core i5,2,7199,3.1,12,2322.3
+10,"Intel Core i7 10700, 8 Cores, 16 Threads, 16MB",core i7,3,6999,2.3,11,3043.0
+11,"Intel Core i7 11700K, 8 Cores, 16 Threads, 16MB",core i7,3,7499,2.2,11,3408.6
+12,"Intel Core i7 12700KF, 12 Cores (8 Performance-cores / 4",core i7,3,9699,2.1,12,4618.6
+13,"Intel Core i9 11900KF, 8 Cores, 16 Threads, 16MB,",core i9,4,8599,1.3,11,6614.6
+14,"Procesador Intel Core i9 11900K, 8 Cores, 16 Threads, 16MB,",core i9,4,8599,1.2,11,7165.8
+15,"Intel Core i9 12900K, 16 Cores (8 Performance-cores / 8",core i9,4,14699,1.1,12,13362.7
