@@ -33,13 +33,13 @@ def llenarGlobales(datosComponenetes):
     global FUENTE_PODER
     FUENTE_PODER = datosComponenetes[7]
 
-def normalizarDatos(pI, datosComponenetes):
+def normalizarDatos(pI, datosComponenetes, precio):
     print("Normalizando... ")
     llenarGlobales(datosComponenetes)    
 
-    individuos = crearIndividuos(pI, datosComponenetes)
+    individuos = crearIndividuos(pI, datosComponenetes, precio)
 
-    pcCompatible =verificarCompatibilidad(individuos, datosComponenetes)
+    pcCompatible =verificarCompatibilidad(individuos, datosComponenetes, precio)
 
     print("PC compatible: ")
     listaPc = []
@@ -87,9 +87,25 @@ def normalizarDatos(pI, datosComponenetes):
     for indiCruzados in cruzaCompleta:
         print(indiCruzados)
 
-    """ print("\nMutar individuos .... (proceso)")
-    mutarIndividuos(cruzaCompleta, 50, 45) """
-    
+    print("\nLista final .... (detalles)")
+    #mutarIndividuos(cruzaCompleta, 50, 45)
+    verDetalles(cruzaCompleta, datosComponenetes)
+
+def verDetalles(lista, dC):
+    print("\nDetalles... ")
+    #for x in dC:
+    #    print(x)
+    for pc in lista:
+        
+        precioTotal = 0
+        for idArticulo in range( len(pc) ):
+            idArt = pc[idArticulo]
+            #print( idArt )
+            #print( dC[idArticulo][idArt-1]['precio'] )
+            precioTotal += int(dC[idArticulo][idArt-1]['precio'])
+        
+        print( pc ," => $ " ,precioTotal)
+        print("\n\n")
 
 
 

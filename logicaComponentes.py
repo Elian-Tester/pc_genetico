@@ -1,8 +1,9 @@
 
+from numpy import true_divide
 from individuos import crearIndividuos
 
 
-def verificarCompatibilidad(individuos, datosComponenetes):
+def verificarCompatibilidad(individuos, datosComponenetes, precio):
     print("\n\n--------------------------------  Compatibilidad ")
     individuosVerificados = []
 
@@ -18,7 +19,7 @@ def verificarCompatibilidad(individuos, datosComponenetes):
 
         if cpuV != tarjV or ramV != tarjV:
             #print(" > incompatible")
-            indi= compatibilizar(datosComponenetes)
+            indi= compatibilizar(datosComponenetes, precio)
             individuosVerificados.append(indi)
         else:
             #print(" > compatible")
@@ -26,11 +27,11 @@ def verificarCompatibilidad(individuos, datosComponenetes):
 
     return individuosVerificados
 
-def compatibilizar(dC):    
+def compatibilizar(dC, precio):    
     
     verificando = True
     while verificando:
-        indi = crearIndividuos(1, dC)[0]               
+        indi = crearIndividuos(1, dC, precio)[0]               
 
         cpuN = indi[0] -1
         tarN = indi[1] -1        
@@ -46,3 +47,6 @@ def compatibilizar(dC):
             verificando = False    
 
     return indi
+
+
+    
