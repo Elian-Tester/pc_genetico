@@ -33,10 +33,10 @@ def verificarDecendencia(parejas_list, decendencia):
     cruzar = []    
     origin = []
     decendencia = decendencia/100
-    print(str(decendencia), "%")
+    #print(str(decendencia), "%")
 
     for pareja in parejas_list:
-        print( str(pareja['decendencia']) +" <= "+ str(decendencia))
+        #print( str(pareja['decendencia']) +" <= "+ str(decendencia))
         if( float( pareja['decendencia'] ) <= decendencia):
             cruzar.append(pareja)
         else:
@@ -49,10 +49,10 @@ def cruzarLista(cruza_list):
     cruzados = []
 
     puntos_corte_disponible = len( cruza_list[0]['id1'] )-1
-    print(f'\nPuntos dispobibles: {puntos_corte_disponible}')
+    #print(f'\nPuntos dispobibles: {puntos_corte_disponible}')
 
     for indice in range( len(cruza_list) ):
-        print(cruza_list[indice])
+        #print(cruza_list[indice])
 
         indi_1 = cruza_list[indice]['id1']
         indi_2 = cruza_list[indice]['id2']
@@ -69,9 +69,9 @@ def cruzarLista(cruza_list):
         nuevoIndividuo_2 = cruza_B1 + cruza_A2
         
 
-        print("Corte: ", corte)
-        print("cz_1: ", nuevoIndividuo_1)
-        print("cz_2: ", nuevoIndividuo_2,"\n")
+        #print("Corte: ", corte)
+        #print("cz_1: ", nuevoIndividuo_1)
+        #print("cz_2: ", nuevoIndividuo_2,"\n")
 
         cruza_list[indice]['id1'] = nuevoIndividuo_1
         cruza_list[indice]['id2'] = nuevoIndividuo_2
@@ -89,7 +89,7 @@ def mutarIndividuos(individuos_mutar, mutGen, mutIndividuo, datosComponenetes):
     mutados_list = []
     for individuo in individuos_mutar:        
         probabilidadMutacionIndi = (random.randint(1, 100)) / 100
-        print("mutara ?? ", probabilidadMutacionIndi, " < ", mutIndividuo)
+        #print("mutara ?? ", probabilidadMutacionIndi, " < ", mutIndividuo)
 
         if (probabilidadMutacionIndi < mutIndividuo ):            
             individuo_mutado = mutarGenes(individuo, mutGen, datosComponenetes)
@@ -112,33 +112,153 @@ def mutarGenes(individuo, mutGen, datosComponenetes):
 
     print("\ngenes  { --------------------------  }")
     mutGen = mutGen / 100
-    print("mut gen: ",mutGen,"%")
-    print(individuo, "\n")
+    #print("mut gen: ",mutGen,"%")
+    #print(individuo, "\n")
     for idArticulo in range( len(individuo) ):
         #print("id: ", individuo[idArticulo] )
         lenArti = len(datosComponenetes[idArticulo])
         #print("cant:", lenArti )        
 
-        if idArticulo!=0 and idArticulo!=1 and idArticulo!=3:
+#        if idArticulo!=0 and idArticulo!=1 and idArticulo!=3:
 
-            mutGenProb = ( random.randint(1, 100) ) / 100
-            if mutGenProb <= mutGen:
-                encontrado = True
-                while encontrado:
-                    idArti = random.randint(1, lenArti)
+        mutGenProb = ( random.randint(1, 100) ) / 100
+        if mutGenProb <= mutGen:
+            encontrado = True
+            while encontrado:
+                
+                idArti = random.randint(1, lenArti)
+
+                if idArticulo==0 or idArticulo==1 or idArticulo==3:
                     
-                    if( idArti != individuo[idArticulo] ):
-                        individuo[idArticulo] = idArti
-                        encontrado = False
+                    idDelProducto = int(individuo[idArticulo]) -1
+                    idArti = obtenerRangos(idArticulo, idDelProducto, datosComponenetes)                                  
+                    
+                if( idArti != individuo[idArticulo] ):
+                    individuo[idArticulo] = idArti
+                    encontrado = False
     
-    print("\n---------------- >>> Individuo mutado: --------------------->>")
-    print(individuo)
-    print("{ --------------------------  }\n")
+    #print("\n---------------- >>> Individuo mutado: --------------------->>")
+    #print(individuo)
+    #print("{ --------------------------  }\n")
 
     return individuo
 
-
-
-
-
+def obtenerRangos(idArticulo, idDelProducto, dC):
+    print("\n\nRangos ...                     $%_%_  %-_% _ %--%%-%-%-%-%--%%%%%%%%%%%%%%%%%%$$")
     
+    print(dC[idArticulo][ idDelProducto ])
+    compatible = dC[idArticulo][ idDelProducto ]['compatible']
+    #name = dC[idArticulo][ idDelProducto ]['nombre']
+    print( "Compatible: ", compatible )
+
+    lista_id_compatibles = []
+    for x in range( len( dC[idArticulo] ) ):
+        if ( dC[idArticulo][ x ]['compatible'] == compatible):
+            print( dC[idArticulo][ x ]['id'] )
+            lista_id_compatibles.append( int( dC[idArticulo][ x ]['id'] ) )
+    len_id = len(lista_id_compatibles) -1
+
+    id_random = lista_id_compatibles[ random.randint( 0, len_id ) ]
+    print( "> id return: ", id_random )
+    
+    print("\n ************ -----------")
+
+    return id_random
+
+
+def limpieza(lista, dC, presupuesto):
+    print("\nDetalles... ")
+
+    listPc_limpia = []    
+
+    for pc in lista:
+        
+        precioTotal = 0
+        for idArticulo in range( len(pc) ):
+            idArt = pc[idArticulo]            
+            precioTotal += int(dC[idArticulo][idArt-1]['precio'])
+        
+        if(precioTotal <= presupuesto):
+        #    print("o ", pc ," => $ " ,precioTotal)
+            listPc_limpia.append(pc)
+        #else:
+        #    print("x ", pc ," => $ " ,precioTotal)
+            
+        #print("\n\n")
+        
+    return listPc_limpia
+
+
+def PODA(lista_pc, dC, PMaxima):
+    print("PODA... ")
+
+    list_aptitud = obtenerAptitudTotal(lista_pc, dC)
+    
+    list_aptitud = sorted(list_aptitud, key=lambda individuo: individuo["aptitud"], reverse=True)
+
+    dataGraficar = datosGraficar(list_aptitud)
+
+    list_aptitud = list_aptitud[:PMaxima]
+    """ for ind in list_aptitud:
+        print(ind) """
+    
+    #print("\nordenado terminado *************** \n")
+
+    return [obtenerPc(list_aptitud), dataGraficar]
+
+def datosGraficar(list_aptitud):
+    print("Datos graficar... ")
+
+    totalAptitud = 0
+    for x in list_aptitud:
+        #print(x)
+        totalAptitud += x["aptitud"]
+    
+    mejor = list_aptitud[0]["aptitud"]
+    promedio = totalAptitud / len(list_aptitud)
+    peor = list_aptitud[-1]["aptitud"]
+
+    """print("mejor: ",mejor)
+    print("promedio: ",promedio)
+    print("peor: ",peor)
+    """
+    
+    #print("\n\n")
+    return {"mejor":mejor, "promedio":promedio, "peor":peor}
+
+
+def obtenerPc(list_aptitud):
+    print("\nobtener PC ... **** ")
+    lista_podada = []
+    for pc in list_aptitud:
+        lista_podada.append(pc["pc"])
+
+    return lista_podada
+
+
+def obtenerAptitudTotal(lista_pc, dC):
+    print("Aptitud total")    
+    pc_aptitud = []
+    for pc in lista_pc:
+        
+        aptitudTotal = 0
+        precioTotal = 0
+
+        for idArticulo in range( len(pc) ):
+            idArt = pc[idArticulo]            
+            #print( dC[idArticulo][idArt-1] )
+            aptitudTotal += float( dC[idArticulo][idArt-1]['aptitud'] )
+            precioTotal += float( dC[idArticulo][idArt-1]['precio'] )
+            #print( dC[idArticulo][idArt-1]['aptitud'] )
+        
+        pc_aptitud.append( {'pc': pc, 'aptitud': aptitudTotal, 'precio':precioTotal } )
+
+        #print("\n")
+    
+    """ for apt in pc_aptitud:
+        print(apt) """
+
+    #print("\nTermina apitutd ---------------------------- \n\n")
+
+    return pc_aptitud
+

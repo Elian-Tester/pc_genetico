@@ -22,16 +22,7 @@ def crearIndividuos(pI, dC, rangoPrecio):
         grC=-1
         almC=-1
         gabC=-1
-        fuentC=-1
-
-        pcR = 1
-        tjR = 1
-        dsiR = 1
-        ramR = 1
-        grR = 1
-        almR = 1
-        gabR = 1
-        fuentR = 1
+        fuentC=-1        
 
         pcValida = True
         print("\n\nCrea individuos >>>>>> ********************* <<<<<< ")
@@ -44,29 +35,19 @@ def crearIndividuos(pI, dC, rangoPrecio):
             almC = reducirCalidad(almC, almac)
             gabC = reducirCalidad(gabC, gabiCant)
             fuentC = reducirCalidad(fuentC, fuentPod)
-
-            print("\n\npc: ",pcC)
+            """ print("\n\npc: ",pcC)
             print("tarj: ",pcC)
             print("disip: ",pcC)
             print("ram: ",pcC)
             print("grafica: ",pcC)
             print("almacen: ",pcC)
             print("gabinet: ",pcC)
-            print("fuente pod: ",pcC)
+            print("fuente pod: ",pcC) """
 
-            pc =[randomFun(pcR,pcCant-pcC), randomFun(tjR, tarjMad-tjC), randomFun(dsiR ,disip-dsi), randomFun(ramR,ramCant-ramC), randomFun(grR,grafCant-grC), randomFun(almR, almac-almC), randomFun(gabR, gabiCant-gabC), randomFun(fuentR, fuentPod-fuentC)]
+            pc =[randomFun(pcCant-pcC), randomFun(tarjMad-tjC), randomFun(disip-dsi), randomFun(ramCant-ramC), randomFun(grafCant-grC), randomFun(almac-almC), randomFun(gabiCant-gabC), randomFun(fuentPod-fuentC)]
             
             if esCompatible(pc, dC):
                 pcValida = verificarCostos(pc, dC, rangoPrecio)
-
-                """ pcR = reducirCalidad(pcC, pcCant)
-                tjR = reducirCalidad(tjC, tarjMad)
-                dsiR = reducirCalidad(dsi, disip)
-                ramR = reducirCalidad(ramC, ramCant)
-                grR = reducirCalidad(grC, grafCant)
-                almR = reducirCalidad(almC, almac)
-                gabR = reducirCalidad(gabC, gabiCant)
-                fuentR = reducirCalidad(fuentC, fuentPod)     """
 
         individuos_list.append(pc)
         #print(pc)
@@ -93,23 +74,23 @@ def verificarCostos(pc, dC, rangoPrecio):
     for idArticulo in range( len(pc) ):
         
         precio = float( dC[idArticulo][ pc[idArticulo] -1]['precio'] )
-        print( " precio: ", precio)
+        #print( " precio: ", precio)
         sumaPrecio += precio
 
     print("Costo total de la pc: ", sumaPrecio, " <<<<***********************")
     if sumaPrecio <= rangoPrecio:
-        print("false... precio: ", sumaPrecio, " de rango: ", rangoPrecio)
+        #print("false... precio: ", sumaPrecio, " de rango: ", rangoPrecio)
         return False
     else:
-        print("true")
+        #print("true")
         return True
         
 
 
 
 
-def randomFun(inicio, rango):
-    return random.randint(inicio, rango)
+def randomFun(rango):
+    return random.randint(1, rango)
 
 
 def desagruparDatos(parejas):
@@ -130,11 +111,11 @@ def esCompatible(individuo, datosComponenetes):
     tarN = individuo[1] -1        
     ramN = individuo[3] -1
  
-    cpuV = datosComponenetes[0][ cpuN ]['compatible']
-    tarjV = datosComponenetes[1][ tarN ]['compatible']        
-    ramV = datosComponenetes[3][ ramN ]['compatible']
+    cpuV = int(datosComponenetes[0][ cpuN ]['compatible'])
+    tarjV = int(datosComponenetes[1][ tarN ]['compatible'])
+    ramV = int(datosComponenetes[3][ ramN ]['compatible'])
     
-    if cpuV != tarjV or ramV != tarjV:
+    if cpuV != tarjV and ramV != tarjV:
         #print(" > incompatible")
         return False
     else:

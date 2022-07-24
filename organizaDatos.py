@@ -3,7 +3,7 @@ import random
 from individuos import crearIndividuos, desagruparDatos
 
 from logicaComponentes import verificarCompatibilidad
-from logicaGenetico import combinacion, cruzarLista, mutarIndividuos, seleccion, verificarDecendencia
+from logicaGenetico import PODA, combinacion, cruzarLista, limpieza, mutarIndividuos, seleccion, verificarDecendencia
 
 PROCESADORES = 0
 TARJETAS = 0
@@ -33,13 +33,15 @@ def llenarGlobales(datosComponenetes):
     global FUENTE_PODER
     FUENTE_PODER = datosComponenetes[7]
 
-def normalizarDatos(pI, datosComponenetes, precio):
+def normalizarDatos(pI, PMaxima,datosComponenetes, presupuesto, nuevaGeneracion):
     print("Normalizando... ")
     llenarGlobales(datosComponenetes)    
 
-    individuos = crearIndividuos(pI, datosComponenetes, precio)
+    pcCompatible = nuevaGeneracion
+    if ( len(nuevaGeneracion) == 0 ):
+        individuos = crearIndividuos(pI, datosComponenetes, presupuesto)
 
-    pcCompatible =verificarCompatibilidad(individuos, datosComponenetes, precio)
+        pcCompatible =verificarCompatibilidad(individuos, datosComponenetes, presupuesto)
 
     print("PC compatible: ")
     listaPc = []
@@ -49,63 +51,52 @@ def normalizarDatos(pI, datosComponenetes, precio):
         listaPc.append( [contaId, pc_] )
         contaId+=1
     
-    for idCon in listaPc:
-        print("> ",idCon)
+    """ for idCon in listaPc:
+        print("> ",idCon) """
 
     seleccionTcT_list = seleccion( len(pcCompatible) )
 
     print("\nSeleccion TcT:")
-    for x in seleccionTcT_list:
-        print(x)
+    """ for x in seleccionTcT_list:
+        print(x) """
 
     combinacion_list = combinacion(seleccionTcT_list, listaPc)
 
     print("\nCombinacion: ")
-    for combi in combinacion_list:
-        print(combi)
+    """ for combi in combinacion_list:
+        print(combi) """
 
     print("\nLista a cruzar")
     cruzar_list = verificarDecendencia(combinacion_list, 60)
-    for cruz in cruzar_list[0]:
-        print(cruz)
+    """ for cruz in cruzar_list[0]:
+        print(cruz) """
     
     lista_cruzado = cruzarLista(cruzar_list[0])
 
     print("\nCruzados lista")
-    for cruzadoIndi in lista_cruzado:
-        print(cruzadoIndi)
+    """ for cruzadoIndi in lista_cruzado:
+        print(cruzadoIndi) """
     #cruzaCompleta = cruzar_list[1] + lista_cruzado
 
     lista_cruzado_individual = desagruparDatos( lista_cruzado )
-    lista_cruzado_individual_mutado = mutarIndividuos(lista_cruzado_individual, 40, 10, datosComponenetes)
+    lista_cruzado_individual_mutado = mutarIndividuos(lista_cruzado_individual, 15, 10, datosComponenetes)
 
     noCruzar_list_individual = desagruparDatos( cruzar_list[1] )
 
     cruzaCompleta = noCruzar_list_individual + lista_cruzado_individual_mutado
 
     print("\nLista cruzada individual completa: ")
-    for indiCruzados in cruzaCompleta:
-        print(indiCruzados)
+    """ for indiCruzados in cruzaCompleta:
+        print(indiCruzados) """
 
-    print("\nLista final .... (detalles)")
-    #mutarIndividuos(cruzaCompleta, 50, 45)
-    verDetalles(cruzaCompleta, datosComponenetes)
+    print("\nLimpieza .... (detalles)")    
+    lista_limpia = limpieza(cruzaCompleta, datosComponenetes, presupuesto)
 
-def verDetalles(lista, dC):
-    print("\nDetalles... ")
-    #for x in dC:
-    #    print(x)
-    for pc in lista:
-        
-        precioTotal = 0
-        for idArticulo in range( len(pc) ):
-            idArt = pc[idArticulo]
-            #print( idArt )
-            #print( dC[idArticulo][idArt-1]['precio'] )
-            precioTotal += int(dC[idArticulo][idArt-1]['precio'])
-        
-        print( pc ," => $ " ,precioTotal)
-        print("\n\n")
+    
+    print("Inicia PODA -------------***********-----------")
+    return PODA(lista_limpia, datosComponenetes, PMaxima)
+
+
 
 
 
