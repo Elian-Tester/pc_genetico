@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear tu PC</title>
+</head>
+<body>
+    <br><br>
+    <center>
+        <h3> PC componentes</h1>
+            <div class="input-group mb-3" style="width: 450px;">
+                <input type="number" name="" id="presupuesto" class="form-control" placeholder="Presupuesto" aria-label="Recipient's username" aria-describedby="button-addon2" _mstaria-label="895804">
+                <button onclick="enviar()" class="btn btn-primary" type="button" id="button-addon2">Crear PC</button>
+              </div>                                    
+    </center>
+
+    <br>
+    <div id="armar">
+        <center>
+            <div class="card" style="width: 13rem;">
+                <img src="\page\assets\construir.png" class="card-img-top" >                
+                <p class="card-text">Ninguna pc contruida.</p>                
+            </div>
+        </center>
+    </div>
+    <br>              
+    <br>                                        
+            
+    
+</body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript" language="javascript">    
+
+    function enviar(){
+        console.log("entra")        
+
+        let presu = document.getElementById('presupuesto').value
+        console.log(presu)
+
+        $.ajax({
+            url: "http://127.0.0.1:3001/get_pc",
+            type:"POST",
+            data: JSON.stringify(presu),
+            contentType: 'application/json; charset=utf-8',            
+        }).done(function(response){
+            console.log("response del server ....")
+            data = JSON.parse(response)
+            console.log(data)
+            console.log(data[1])
+
+            let fila = ""
+            let tabla = ""
+            for (var i=0; i<data[1].length; i++){
+                tabla += "<div class='container' style='background-color: #eceef0e1;'> "
+                console.log(i)
+                console.log(data[1][i])
+                pc = data[1][i]                
+                
+                let col_1 = ""
+                let col_2 = ""
+
+                precioTotal = 0
+                for (var j=0; j <pc.length; j++){
+                    console.log(pc[j]['nombre'])
+                    console.log(pc[j]['img'])
+                    console.log(pc[j]['precio'])
+                    precioTotal += parseInt(pc[j]['precio'])
+                    
+                    if(j<4){
+                        col_1 += "<div class='col'>"
+                                +"<div class='card' style='width: 13rem;'>"
+                                +    "<img src=\\page\\assets\\"+pc[j]['img']+".jpg"+ " class='card-img-top' >"
+                                +    "<div class='card-body'>"
+                                +        "<p class='card-text'>"+pc[j]['nombre']+".</p>"
+                                +    "</div>"
+                                +    "<h5> $"+pc[j]['precio']+"</h5>"
+                                +"  </div>"
+                                +"</div>";
+                    }else{
+                        col_2 += "<div class='col'>"
+                                +"<div class='card' style='width: 13rem;'>"
+                                +    "<img src=\\page\\assets\\"+pc[j]['img']+".jpg"+ " class='card-img-top' >"
+                                +    "<div class='card-body'>"
+                                +        "<p class='card-text'>"+pc[j]['nombre']+".</p>"
+                                +    "</div>"
+                                +    "<h5> $"+pc[j]['precio']+"</h5>"
+                                +"  </div>"
+                                +"</div>";
+                    }
+                }
+
+                fila = " <br> <h3>Precio total: $ "+precioTotal+"</h1>" +"<div class='row'>"+col_1+"</div> <br>" + "<div class='row'>"+col_2+"</div> <br>"
+                tabla += fila + "<br>" +"</div> <br> <br> "
+            }
+            
+            tabla_llenar = document.getElementById("armar");
+            tabla_llenar.innerHTML = tabla
+        })
+
+    }
+
+</script>
+

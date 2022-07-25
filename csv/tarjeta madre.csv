@@ -1,6 +1,6 @@
-id,nombre,generacion,compatible,precio,calidad,core i3,core i5,core i7,core i9,aptitud
-1,Tarjeta Madre Asus Prime H510M-E,11,11,1899,3,TRUE,TRUE,TRUE,TRUE,633
-2,"Tarjeta Madre Gigabyte Z590 UD, 10-11 Gen Intel, DDR4 5333Mhz OC",11,11,4499,2,TRUE,TRUE,TRUE,TRUE,2249.5
-3,"Tarjeta Madre Asus ROG Strix Z590-E Gaming WIFI, 10-11 Gen Intel,",11,11,8099,1,TRUE,TRUE,TRUE,TRUE,8099
-4,"Tarjeta Madre Asus Prime H610M-A D4-CSM, Micro-ATX, 12th Gen Intel",12,12,2599,2,TRUE,TRUE,TRUE,TRUE,1299.5
-5,"Tarjeta Madre Asus ROG Maximus Z690 Hero, ATX, 12th Gen Intel",12,12,13999,1,TRUE,TRUE,TRUE,TRUE,13999
+id,nombre,generacion,compatible,precio,calidad,core i3,core i5,core i7,core i9,aptitud,img
+1,Tarjeta Madre Asus Prime H510M-E,11,11,1899,3,TRUE,TRUE,TRUE,TRUE,633,T1
+2,"Tarjeta Madre Gigabyte Z590 UD, 10-11 Gen Intel, DDR4 5333Mhz OC",11,11,4499,2,TRUE,TRUE,TRUE,TRUE,2249.5,T2
+3,"Tarjeta Madre Asus ROG Strix Z590-E Gaming WIFI, 10-11 Gen Intel,",11,11,8099,1,TRUE,TRUE,TRUE,TRUE,8099,T3
+4,"Tarjeta Madre Asus Prime H610M-A D4-CSM, Micro-ATX, 12th Gen Intel",12,12,2599,2,TRUE,TRUE,TRUE,TRUE,1299.5,T4
+5,"Tarjeta Madre Asus ROG Maximus Z690 Hero, ATX, 12th Gen Intel",12,12,13999,1,TRUE,TRUE,TRUE,TRUE,13999,T5

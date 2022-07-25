@@ -4,7 +4,7 @@ from individuos import crearIndividuos
 
 
 def verificarCompatibilidad(individuos, datosComponenetes, precio):
-    print("\n\n--------------------------------  Compatibilidad ")
+    #print("\n\n--------------------------------  Compatibilidad ")
     individuosVerificados = []
 
     for i in range( len(individuos) ):        

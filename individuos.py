@@ -13,7 +13,8 @@ def crearIndividuos(pI, dC, rangoPrecio):
     almac = len(dC[5])
     gabiCant = len(dC[6])
     fuentPod = len(dC[7])
-
+    
+    print("\n\nCrea individuos > ")
     for i in range(pI):
         pcC=-1
         tjC=-1
@@ -24,8 +25,7 @@ def crearIndividuos(pI, dC, rangoPrecio):
         gabC=-1
         fuentC=-1        
 
-        pcValida = True
-        print("\n\nCrea individuos >>>>>> ********************* <<<<<< ")
+        pcValida = True        
         while pcValida:
             pcC = reducirCalidad(pcC, pcCant)
             tjC = reducirCalidad(tjC, tarjMad)
@@ -34,41 +34,32 @@ def crearIndividuos(pI, dC, rangoPrecio):
             grC = reducirCalidad(grC, grafCant)
             almC = reducirCalidad(almC, almac)
             gabC = reducirCalidad(gabC, gabiCant)
-            fuentC = reducirCalidad(fuentC, fuentPod)
-            """ print("\n\npc: ",pcC)
-            print("tarj: ",pcC)
-            print("disip: ",pcC)
-            print("ram: ",pcC)
-            print("grafica: ",pcC)
-            print("almacen: ",pcC)
-            print("gabinet: ",pcC)
-            print("fuente pod: ",pcC) """
+            fuentC = reducirCalidad(fuentC, fuentPod)            
 
             pc =[randomFun(pcCant-pcC), randomFun(tarjMad-tjC), randomFun(disip-dsi), randomFun(ramCant-ramC), randomFun(grafCant-grC), randomFun(almac-almC), randomFun(gabiCant-gabC), randomFun(fuentPod-fuentC)]
             
             if esCompatible(pc, dC):
-                pcValida = verificarCostos(pc, dC, rangoPrecio)
-
-        individuos_list.append(pc)
-        #print(pc)
+                pcValida = verificarCostos(pc, dC, rangoPrecio)                        
+        print(pc)
+        individuos_list.append(pc)        
 
     return individuos_list
 
 def reducirCalidad(numReducir, numMaximo):
-    print("\nreducir: ", numReducir, " <==> num Maxio: ",numMaximo )
+    #print("\nreducir: ", numReducir, " <==> num Maxio: ",numMaximo )
     if(numReducir != numMaximo-1):
         numReducir+=1
     return numReducir
 
 def aumentarCalidad(numAumentar, numMaximo):
-    print("\nreducir: ", numAumentar, " <==> num Maxio: ",numMaximo )
+    #print("\nreducir: ", numAumentar, " <==> num Maxio: ",numMaximo )
     if(numAumentar != numMaximo-1):
         numAumentar+=1
     return numAumentar
 
 
 def verificarCostos(pc, dC, rangoPrecio):
-    print("\n\n\nVerificando costos -------------")
+    #print("\n\n\nVerificando costos -------------")
 
     sumaPrecio = 0
     for idArticulo in range( len(pc) ):
@@ -77,7 +68,7 @@ def verificarCostos(pc, dC, rangoPrecio):
         #print( " precio: ", precio)
         sumaPrecio += precio
 
-    print("Costo total de la pc: ", sumaPrecio, " <<<<***********************")
+    #print("Costo total de la pc: ", sumaPrecio, " <<<<***********************")
     if sumaPrecio <= rangoPrecio:
         #print("false... precio: ", sumaPrecio, " de rango: ", rangoPrecio)
         return False
@@ -94,7 +85,7 @@ def randomFun(rango):
 
 
 def desagruparDatos(parejas):
-    print("\nDesagrupando <---------")
+    #print("\nDesagrupando <---------")
     lista_separada = []
 
     for individuos in parejas:
@@ -105,7 +96,7 @@ def desagruparDatos(parejas):
     return lista_separada
 
 def esCompatible(individuo, datosComponenetes):
-    print("\n\n--------------------------------  verificar compatible ")    
+    #print("\n\n--------------------------------  verificar compatible ")    
 
     cpuN = individuo[0] -1
     tarN = individuo[1] -1        

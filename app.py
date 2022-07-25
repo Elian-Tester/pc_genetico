@@ -1,33 +1,66 @@
 import matplotlib.pyplot as plt
+from flask import Flask, request
+from flask_cors import CORS, cross_origin
+import json
 
 from leerCSV import leerTodo
 from organizaDatos import normalizarDatos
 
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
+@app.route('/')
+@cross_origin()
+def index():
+    return 'Creado'
+
+@app.route('/get_pc', methods=['POST'])
 def controlEventos():
+    presupuesto = float(request.get_json())
+    #presupuesto = 21300
+    print("Presupuesto usuario: ", presupuesto)
+
     print("Control eventos: \n")
     datosComponenetes = leerTodo()
-    dataGraficarMax = []
-    dataGraficarProm = []
-    dataGraficarMin = []
+    
 
-    nuevaGeneracion = []
-    for iterar in range(10):
-        data = normalizarDatos(20, 20, datosComponenetes, 112300, nuevaGeneracion)
-        nuevaGeneracion = data[0]
+    
+    seleccionMejores = []
+    for i in range(5):
+        dataGraficarMax = []
+        dataGraficarProm = []
+        dataGraficarMin = []
 
-        dataGraficarMax.append(data[1]["mejor"])
-        dataGraficarProm.append(data[1]["promedio"])
-        dataGraficarMin.append(data[1]["peor"])
+        nuevaGeneracion = []
 
-    print("\nUltima generacion: ")
-    for x in nuevaGeneracion:
-        print(x)
+        for iterar in range(5):
+            data = normalizarDatos(10, 10, datosComponenetes, presupuesto, nuevaGeneracion)
+            nuevaGeneracion = data[0]
 
-    print("\n\nGraficando coordenada **********")
-    graficarHistorico(dataGraficarMax, dataGraficarMin, dataGraficarProm)
+            dataGraficarMax.append(data[1]["mejor"])
+            dataGraficarProm.append(data[1]["promedio"])
+            dataGraficarMin.append(data[1]["peor"])
+        
+        seleccionMejores.append( nuevaGeneracion[0] )
+        #print(nuevaGeneracion[0])
+    
+    print("\nMejores: ")
+    pc_detalles = []
+    for pc_select in seleccionMejores:
+        pc_datos = []
+        for tipo in range( len(pc_select)):
+            idProducto = pc_select[tipo]
+            pc_datos.append( datosComponenetes[tipo][idProducto-1] )
+        pc_detalles.append(pc_datos)
+
+
+    print("\n\nGraficando coordenada **********")    
+
+    return json.dumps(['pcs', pc_detalles ])
+    #graficarHistorico(dataGraficarMax, dataGraficarMin, dataGraficarProm)
     #for grafi in dataGraficar:
-    #    print(grafi)
+        #print(grafi)
 
 def graficarHistorico(xMax, xMin, xPro):    
     print("\nGrafica Historico: ")
@@ -40,8 +73,6 @@ def graficarHistorico(xMax, xMin, xPro):
 
     xGen = [x for x in range( len(xMax) )]
 
-        #plt.figure(figsize=(10,5))
-        #fig.tight_layout()
     plt.subplot(1, 1, 1)
     plt.plot(xGen,yMax, label='Mejor')
     plt.plot(xGen,yMin, label='Peor')
@@ -53,4 +84,5 @@ def graficarHistorico(xMax, xMin, xPro):
 
 
 if __name__ == "__main__":
-    controlEventos() 
+    app.run(port = 3001, debug = True)
+    #controlEventos() 
